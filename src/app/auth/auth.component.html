@@ -1,0 +1,23 @@
+<div class="auth-content">
+  <form [formGroup]="authForm" (ngSubmit)="signIn()">
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" class="form-control" placeholder="Enter your email" required name="email"
+        formControlName="email">
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" class="form-control" placeholder="********" required name="password"
+        formControlName="password">
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="statusError">
+      {{messageError}}
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Sign-in</button>
+  </form>
+</div>
+
+<!-- Spinner -->
+<ngx-spinner bdOpacity=0.5 bdColor="#333" size="default" color="#fff" type="ball-clip-rotate" fullScreen="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
