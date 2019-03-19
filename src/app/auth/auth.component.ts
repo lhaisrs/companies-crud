@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 //Service
 import { AuthService } from '../auth/auth.service';
@@ -23,7 +24,8 @@ export class AuthComponent implements OnInit {
   messageError: string = '';
   statusError: boolean = false;
 
-  constructor(private authService: AuthService, private spinner: NgxSpinnerService) { }
+  constructor(private authService: AuthService, 
+    private spinner: NgxSpinnerService, private router: Router) { }
 
   ngOnInit() {}
 
@@ -31,7 +33,10 @@ export class AuthComponent implements OnInit {
     this.spinner.show();
 
     this.authService.signIn(this.authForm.value.email, this.authForm.value.password).then(() => {
+
       this.spinner.hide();
+      this.router.navigate(['/company']);
+      
     }).catch((err) => {
       this.spinner.hide();
 
